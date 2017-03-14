@@ -12,7 +12,6 @@ import re
 
 
 
-
 class vpsscraper(object):
     def __init__(self):
         self.total_req = 0
