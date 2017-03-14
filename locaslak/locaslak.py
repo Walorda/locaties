@@ -16,7 +16,6 @@ import urllib
 import re
 
 
-
 class vpsscraper(object):
     def __init__(self):
         self.total_req = 0
@@ -25,15 +24,13 @@ class vpsscraper(object):
         self.today = date.today()
         self.url = ["http://www.slak.nl/platform/evenementen/locaties/?pno=1"]
 
-
-
-
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             'Accept':"application/json, text/javascript, */*; q=0.01",
             "X-Requested-With:":"XMLHttpRequest"
         }
+
 
     def create_table(self):
         try:
@@ -52,13 +49,8 @@ class vpsscraper(object):
 
 
     def scrapy(self):
-
-
         scrape_links = []
-
-
         return
-
 
 
     def scrape_data(self):
@@ -66,16 +58,7 @@ class vpsscraper(object):
 
         for links in array_links:
             print()
-
-
-
         return
-
-
-
-
-
-
 
 
     def connectieopen(self,link):
@@ -86,19 +69,18 @@ class vpsscraper(object):
                 'Accept-Encoding':'utf-8'}
 
 
-
         self.total_req += 1
         slapen = randint(1, 2)
 
         time.sleep(slapen)
 
         print(self.total_req)
+
         try:
             session = requests.Session()
 
             req = session.get(link, headers=headers)
             content = req.content
-            bsObj = BeautifulSoup(content.decode('utf-8','ignore'), "html.parser")
         except HTTPError as fout:
             print(fout + link)
         except URLError as fout:
@@ -107,13 +89,8 @@ class vpsscraper(object):
             print(e)
             print(link)
         else:
-
-            return bsObj
-
-
-
-
-
+            return content
+        print("Hallo")
 
 
 scraper = vpsscraper()
