@@ -11,7 +11,6 @@ from datetime import date
 import re
 
 
-
 class vpsscraper(object):
     def __init__(self):
         self.total_req = 0
@@ -19,9 +18,6 @@ class vpsscraper(object):
         self.resultdb = None
         self.today = date.today()
         self.s = requests.session()
-
-
-
 
         self.headers = {
             "Host": "www.gapph.nl",
@@ -32,9 +28,8 @@ class vpsscraper(object):
             "Referer": "https://www.gapph.nl/overzicht-aanbod.aspx",
             "Cookie": "ASP.NET_SessionId=aobiwxbtykffpr45uv4pud55; _gat=1",
             "Connection": "keep-alive"
-
-
         }
+
 
     def create_table(self):
         try:
@@ -53,22 +48,12 @@ class vpsscraper(object):
 
 
     def scrapy(self):
-
         url = "https://www.gapph.nl"
         r = self.s.get(url)
         dic = r.headers
         self.headers['Cookie'] = dic['Set-Cookie']
 
-
-
-
-
-
-
         url = "https://www.gapph.nl/GetList.aspx?x1=50,359010490830606&x2=53,73528010549542&y1=1,2835392578124356&y2=9,050873242187436"
-
-
-
 
         r = requests.request('GET',url,headers=self.headers)
         bsObj = BeautifulSoup(r.content.decode('utf-8','ignore'), "html.parser")
@@ -78,14 +63,11 @@ class vpsscraper(object):
             links = each.find('a')
             array_links.append(links['href'])
 
-
         del array_links[0]
-
 
         bijhouden = 0
 
         return array_links
-
 
 
     def scrape_data(self):
@@ -114,30 +96,15 @@ class vpsscraper(object):
                 tocompare = list.getText()
                 prijs  = re.findall(euro_rg,tocompare)
 
-
                 oppervlakte = re.findall(oppervlakte_rg,tocompare)
                 # if prijs:
                 #     print(prijs)
                 # if oppervlakte:
                 #     print(oppervlakte)
 
-
-
-
-
-
-
-
             print("https://www.gapph.nl/"+links)
 
-
         return
-
-
-
-
-
-
 
 
     def connectieopen(self,link):
@@ -145,7 +112,6 @@ class vpsscraper(object):
                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                "Accept-Language": "en-US,en;q=0.5",
                 'Accept-Encoding':'utf-8'}
-
 
 
         self.total_req += 1
@@ -170,11 +136,6 @@ class vpsscraper(object):
         else:
 
             return bsObj
-
-
-
-
-
 
 
 scraper = vpsscraper()
