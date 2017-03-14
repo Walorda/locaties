@@ -55,34 +55,9 @@ class vpsscraper(object):
 
 
         scrape_links = []
-        bsObj = self.connectieopen(self.url[0])
-        paginanummers = bsObj.find('span',attrs={'class':'em-pagination'})
-        aantal_links = paginanummers.findAll('a')
-        aantal = 0
-        for each in aantal_links:
-            aantal += 1
-
-        string_link = self.url[0]
-        string_link = string_link[:-1]
-        array_links = []
-        for n in range(1,aantal+1):
-            array_links.append(string_link + str(n))
 
 
-        bijhoudelinks = 0
-        linkresultaat = []
-
-
-        for link in array_links:
-            object = self.connectieopen(link)
-            ul_links = object.find('ul',attrs={'class':'em-locations-list'})
-            alle_links = ul_links.findAll('a')
-            for each in alle_links:
-                linkresultaat.append(each['href'])
-                bijhoudelinks += 1
-        print(bijhoudelinks)
-
-        return linkresultaat
+        return
 
 
 
