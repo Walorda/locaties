@@ -1,0 +1,7 @@
+/*$(window).scroll(function() {
+    if ($(this).scrollTop() > 25) {
+         $('header').css({position: 'fixed'});
+    } else {
+         $('header').css({position: 'absolute'});
+    }
+});*/
